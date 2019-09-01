@@ -12,13 +12,15 @@ public class Li_Leave implements Listener {
 	public void onLeave(PlayerQuitEvent e) {
 		String uuid = e.getPlayer().getUniqueId().toString();
 		try {
-			PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT OR REPLACE INTO Statics (uuid,bp,bb,ph,pm,pde) VALUES (?,?,?,?,?,?)");
+			PreparedStatement ps = MySQL.getConnection().prepareStatement("REPLACE INTO Statics (uuid,name,bp,bb,ph,pm,pde) VALUES (?,?,?,?,?,?,?)");
 			ps.setString(1, uuid);
-			ps.setInt(2, GFunktionen.getBlockset(uuid));
-			ps.setInt(3, GFunktionen.getBlockbreakc(uuid));
-			ps.setInt(4, GFunktionen.getOnTimeH(uuid));
-			ps.setInt(5, GFunktionen.getOnTimeM(uuid));
-			ps.setInt(6, GFunktionen.getDeathc(uuid));
+			ps.setString(2, e.getPlayer().getName());
+			ps.setInt(3, GFunktionen.getBlockset(uuid));
+			ps.setInt(4, GFunktionen.getBlockbreakc(uuid));
+			ps.setInt(5, GFunktionen.getOnTimeH(uuid));
+			ps.setInt(6, GFunktionen.getOnTimeM(uuid));
+			ps.setInt(7, GFunktionen.getDeathc(uuid));
+			ps.executeUpdate();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

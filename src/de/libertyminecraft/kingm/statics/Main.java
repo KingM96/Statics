@@ -36,7 +36,7 @@ public class Main extends JavaPlugin {
 			public void run() {
 				MySQL.connect();
 			     try {
-					PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS Statics (uuid VARCHAR(64) NOT NULL , bp INT NOT NULL , bb INT NOT NULL, ph INT NOT NULL , pm INT NOT NULL , pde INT NOT NULL , PRIMARY KEY (uuid))");
+					PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS Statics (uuid VARCHAR(64) NOT NULL , name VARCHAR(64) NOT NULL ,bp INT NOT NULL , bb INT NOT NULL, ph INT NOT NULL , pm INT NOT NULL , pde INT NOT NULL , PRIMARY KEY (uuid))");
 					ps.executeUpdate();
 					} catch (SQLException e1) {
 
@@ -45,13 +45,6 @@ public class Main extends JavaPlugin {
 				
 			}
 		},40L);
-		
-     
-     	this.getServer().getPluginManager().registerEvents(new Li_BB(), this);
-     	this.getServer().getPluginManager().registerEvents(new Li_Bp(), this);
-     	this.getServer().getPluginManager().registerEvents(new Li_Death(), this);
-     	this.getServer().getPluginManager().registerEvents(new Li_Join(), this);
-     	this.getServer().getPluginManager().registerEvents(new Li_Leave(), this);
      	Timer.timer();
 		System.out.println(this.getName()+" Geladen");
 		
@@ -63,13 +56,15 @@ public class Main extends JavaPlugin {
 		for (Player p : Main.pl.getServer().getOnlinePlayers()) {
 			String uuid = p.getUniqueId().toString();
 			try {
-				PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT OR REPLACE INTO Statics (uuid,bp,bb,ph,pm,pde) VALUES (?,?,?,?,?,?)");
+				PreparedStatement ps = MySQL.getConnection().prepareStatement("REPLACE INTO Statics (uuid,name,bp,bb,ph,pm,pde) VALUES (?,?,?,?,?,?,?)");
 				ps.setString(1, uuid);
-				ps.setInt(2, GFunktionen.getBlockset(uuid));
-				ps.setInt(3, GFunktionen.getBlockbreakc(uuid));
-				ps.setInt(4, GFunktionen.getOnTimeH(uuid));
-				ps.setInt(5, GFunktionen.getOnTimeM(uuid));
-				ps.setInt(6, GFunktionen.getDeathc(uuid));
+				ps.setString(2, p.getName());
+				ps.setInt(3, GFunktionen.getBlockset(uuid));
+				ps.setInt(4, GFunktionen.getBlockbreakc(uuid));
+				ps.setInt(5, GFunktionen.getOnTimeH(uuid));
+				ps.setInt(6, GFunktionen.getOnTimeM(uuid));
+				ps.setInt(7, GFunktionen.getDeathc(uuid));
+				ps.executeUpdate();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

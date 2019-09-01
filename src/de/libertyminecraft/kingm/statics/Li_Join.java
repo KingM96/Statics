@@ -14,7 +14,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class Li_Join implements Listener {
-	private static File file = new File("plugins/"+Main.pl.getName(), "config.yml");
+	private static File file = new File("plugins/Statics/config.yml");
 	   public static FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 	public static void getPlayerstats(String uuid) {
 		try {
@@ -60,13 +60,15 @@ public class Li_Join implements Listener {
 		}else {
 			
 			try {
-				PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT OR REPLACE INTO Statics (uuid,bp,bb,ph,pm,pde) VALUES (?,?,?,?,?,?)");
+				PreparedStatement ps = MySQL.getConnection().prepareStatement("INSERT INTO Statics (uuid, name, bp, bb, ph, pm, pde) VALUES (?,?,?,?,?,?,?)");
 				ps.setString(1, tuuid);
-				ps.setInt(2, 0);
+				ps.setString(2, player.getName());
 				ps.setInt(3, 0);
 				ps.setInt(4, 0);
 				ps.setInt(5, 0);
 				ps.setInt(6, 0);
+				ps.setInt(7, 0);
+				ps.executeUpdate();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

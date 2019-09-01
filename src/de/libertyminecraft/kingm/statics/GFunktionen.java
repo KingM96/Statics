@@ -20,28 +20,29 @@ public class GFunktionen {
 	}
 	public static void addDeathc(String uuid) {
 		int temp = getDeathc(uuid);
-		temp +=1;
+		temp ++;
 		Main.Pd.put(uuid, temp);
 		return;
 	}
 	public static void addBBrak(String uuid) {
 		int temp = getBlockbreakc(uuid);
-		temp +=1;
+		temp ++;
 		Main.Pbreak.put(uuid, temp);
 		return;
 	}
 	public static void addBSet(String uuid) {
 		int temp = getBlockset(uuid);
-		temp +=1;
+		Main.Pbset.remove(uuid);
+		temp ++;
 		Main.Pbset.put(uuid, temp);
 		return;
 	}
 	public static void addTime(String uuid) {
 		int tempm= getOnTimeM(uuid);
-		tempm +=1;
+		tempm ++;
 		if(tempm==60) {
 			int temph= getOnTimeH(uuid);
-			temph+=1;
+			temph++;
 			Main.Ph.put(uuid, temph);
 			Main.Pmin.put(uuid, 0);
 			}else {

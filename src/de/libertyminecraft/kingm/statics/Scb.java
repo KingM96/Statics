@@ -16,12 +16,12 @@ public class Scb {
 	 score.setDisplayName("§6Stats");
 	 score.setDisplaySlot(org.bukkit.scoreboard.DisplaySlot.SIDEBAR);
 	  
-	 Score punkte = score.getScore("§e" + GFunktionen.getOnTimeH(uuid) + "§a Online Zeit§6");
-	 Score kd = score.getScore("§e" + GFunktionen.getDeathc(uuid)+ " §a Tode");
+	 Score punkte = score.getScore("§e" + GFunktionen.getOnTimeH(uuid) + "§a Online Zeit in H§6");
+	 Score kd = score.getScore("§e" +GFunktionen.getDeathc(uuid)+"§a Tode");
 	 Score lz1=score.getScore("                ");
-	 Score lz2=score.getScore("");
-	 Score ranking =score.getScore("§e"+GFunktionen.getBlockbreakc(uuid) +"§aAbgebaut");
-	 Score p1=score.getScore("§e"+GFunktionen.getBlockset(uuid) +"§aGesetzt");
+	 Score lz2=score.getScore("§aBlöcke");
+	 Score ranking =score.getScore("§e"+GFunktionen.getBlockbreakc(uuid) +"§a Abgebaut");
+	 Score p1=score.getScore("§e"+GFunktionen.getBlockset(uuid) +"§a Gesetzt");
 
 
 	 kd.setScore(7);
