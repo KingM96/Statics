@@ -75,7 +75,7 @@ public class Li_Join implements Listener {
 
 		}
 	
-		
+		Scb.createScoreboard(e.getPlayer());	
 	}		
 }	
 	
