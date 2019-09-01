@@ -10,6 +10,7 @@ public class Timer {
 		    		 Main.s =0;
 		    		 for (Player p : Main.pl.getServer().getOnlinePlayers()) {
 		    			 GFunktionen.addTime(p.getUniqueId().toString());
+		    			 Scb.createScoreboard(p);
 		    		 }
 		    			
 		    	 }else { 
