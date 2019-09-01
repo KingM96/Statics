@@ -22,6 +22,7 @@ public class Main extends JavaPlugin {
 	public FileConfiguration config;
 	@Override
 	public void onEnable() {
+		loadConfig();
 		MySQL.connect();
      try {
 		PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS Statics (uuid VARCHAR(64) NOT NULL , bp INT NOT NULL , bb INT NOT NULL, ph INT NOT NULL , pm INT NOT NULL , pde INT NOT NULL , PRIMARY KEY (uuid))");
