@@ -23,6 +23,13 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		loadConfig();
+
+     	this.getServer().getPluginManager().registerEvents(new Li_BB(), this);
+     	this.getServer().getPluginManager().registerEvents(new Li_Bp(), this);
+     	this.getServer().getPluginManager().registerEvents(new Li_Death(), this);
+     	this.getServer().getPluginManager().registerEvents(new Li_Join(), this);
+     	this.getServer().getPluginManager().registerEvents(new Li_Leave(), this);
+     	pl=this;
 		MySQL.connect();
      try {
 		PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS Statics (uuid VARCHAR(64) NOT NULL , bp INT NOT NULL , bb INT NOT NULL, ph INT NOT NULL , pm INT NOT NULL , pde INT NOT NULL , PRIMARY KEY (uuid))");
@@ -39,7 +46,7 @@ public class Main extends JavaPlugin {
      	this.getServer().getPluginManager().registerEvents(new Li_Leave(), this);
      	Timer.timer();
 		System.out.println(this.getName()+" Geladen");
-		pl=this;
+		
 
 	}
 	
