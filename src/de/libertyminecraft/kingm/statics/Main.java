@@ -30,14 +30,22 @@ public class Main extends JavaPlugin {
      	this.getServer().getPluginManager().registerEvents(new Li_Join(), this);
      	this.getServer().getPluginManager().registerEvents(new Li_Leave(), this);
      	pl=this;
-		MySQL.connect();
-     try {
-		PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS Statics (uuid VARCHAR(64) NOT NULL , bp INT NOT NULL , bb INT NOT NULL, ph INT NOT NULL , pm INT NOT NULL , pde INT NOT NULL , PRIMARY KEY (uuid))");
-		ps.executeUpdate();
-		} catch (SQLException e1) {
+     	this.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+			
+			@Override
+			public void run() {
+				MySQL.connect();
+			     try {
+					PreparedStatement ps = MySQL.getConnection().prepareStatement("CREATE TABLE IF NOT EXISTS Statics (uuid VARCHAR(64) NOT NULL , bp INT NOT NULL , bb INT NOT NULL, ph INT NOT NULL , pm INT NOT NULL , pde INT NOT NULL , PRIMARY KEY (uuid))");
+					ps.executeUpdate();
+					} catch (SQLException e1) {
 
-		System.out.println(this.getName()+"Keine verbindung zum Mysql Server plugin wird gestoppt!");
-		}
+					System.out.println(pl.getName()+"Keine verbindung zum Mysql Server plugin wird gestoppt!");
+					}
+				
+			}
+		},40L);
+		
      
      	this.getServer().getPluginManager().registerEvents(new Li_BB(), this);
      	this.getServer().getPluginManager().registerEvents(new Li_Bp(), this);
